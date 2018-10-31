@@ -1,11 +1,30 @@
-hjg
-
-sdffgdfgdfgdfgd
-
-rtger
-
-asdasdasd
-asdasdas
-
-
-sdfsd
+﻿<?xml version="1.0" encodeing="UTF-8"?>
+<project name="ant-jmeter-test" default="run" basedir=".">
+	<tstamp>
+		<format property="time" pattern="yyyyMMddhhmm" />
+	</tstamp>
+	<!--jmeter 目录-->
+	<property name="jmeter.home" value="/var/jenkins_home/jmeter/apache-jmeter-4.0/bin"/>
+	<!--生成报告路径-->
+	<property name="jmeter.result.jtl.dir" value="/var/jenkins_home/jmeter/apache-jmeter-4.0/bin" />
+	<!-- 生成html路径-->
+	<property name="jmeter.result.html.dir" value="/var/jenkins_home/jmeter/apache-jmeter-4.0/bin" />
+	<!--生成报告前缀-->
+	<property name="reportName" value="testReport"/>
+	<property name="jmeter.result.jtlName" value="${jmeter.result.jtl.dir}/${reportName}${time}.jtl"/>
+	<property name="jmeter.result.htmlName" value="${jmeter.result.html.dir}/${reportName}${time}.html"/>
+	
+	<target name="test">
+		<antcall target="test" />
+		<!--<antcall target="report" />-->
+	</target>
+	
+	<target name="test">
+		<taskdef name="jmeter" classname="org.programmerplanet.ant.taskdefs.jmeter.JmeterTask" />
+			<jmeter jmeterhome="${jmeter.home}" resultlog="${jmeter.result.jtlName}">
+				<tsetplans dir="/var/jenkins_home/jmeter/apache-jmeter-4.0/bin" includes="pl.jmx">
+				<property name="jmeter.save.saveservice.output_format" value="xml" />
+			</jmeter>
+	</target>
+asdasdasdasda
+</project>
